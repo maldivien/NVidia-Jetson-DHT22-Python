@@ -159,14 +159,26 @@ static PyObject * readSensorDHT11(PyObject *self, PyObject *args){
 
 
 
-static PyMethodDef C_DHT22Methods[] = {
+static PyMethodDef module_methods[] = {
 	{"readSensor", 		readSensor, 		METH_VARARGS, "Read all sensor values and return (float)temperature, (float)humidity and (0 or 1)message validity. If checksum not OK return -39909 (ERROR) as Humid and Temperature"},
 	{"readSensorDHT11", readSensorDHT11, 	METH_VARARGS, "Read all sensor values and return (float)temperature, (float)humidity and (0 or 1)message validity. If checksum not OK return -39909 (ERROR) as Humid and Temperature. (Only for DHT11)"},
 	{NULL, NULL, 0, NULL}
 };
 
-
-PyMODINIT_FUNC 
-initC_DHT(void){
-	(void)Py_InitModule("C_DHT", C_DHT22Methods);
+static struct PyModuleDef C_DHT =
+{
+    PyModuleDef_HEAD_INIT,
+    "C_DHT", /* name of module */
+    "usage: readSensor(PyObject *self, PyObject *args)\n", /* module documentation, may be NULL */
+    -1,   /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+    module_methods,
+	NULL,
+    NULL,
+    NULL,
+    NULL
 };
+
+PyMODINIT_FUNC PyInit_C_DHT(void)
+{
+    return PyModule_Create(&C_DHT);
+}
