@@ -20,7 +20,7 @@ Install python3-dev
 
 This repository relies on a fork I made. To clone the repository use:
 ```
- git clone --recurse-submodules -j8 https://github.com/GrgoMariani/NVidia-Jetson-DHT22-Python
+ git clone --recurse-submodules -j8 https://github.com/maldivien/NVidia-Jetson-DHT22-Python/NVidia-Jetson-DHT22-Python
 ```
 
 ### Setup
